@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pang Jun Yin — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #1a1a2e;
+    color: white;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #16213e;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 60px;
+    border-bottom: 1px solid rgba(150,160,210,0.2);
+  }
+
+  .nav-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    color: white;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: white; }
+
+  /* HERO */
+  .hero {
+    padding: 140px 48px 100px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: #AFA9EC;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+  }
+
+  .hero-name {
+  font-family: 'Press Start 2P', cursive;
+  
+    font-size: clamp(22px, 4vw, 40px);
+    color: white;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+  }
+
+  .hero-summary {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.9;
+    max-width: 600px;
+    margin: 0 auto 36px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: rgba(150,160,210,0.7);
+    color: black;
+  }
+
+  .btn-primary:hover { background: rgba(180,190,230,0.9); }
+
+  .btn-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(150,160,210,0.5);
+  }
+
+  .btn-outline:hover { border-color: rgba(150,160,210,1); }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid rgba(150,160,210,0.15);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: #AFA9EC;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+  font-family: 'Press Start 2P', cursive;
+  
+    font-size: 18px;
+    color: white;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .skill-group {
+    background: rgba(150,160,210,0.12);
+    border: 1px solid rgba(150,160,210,0.25);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .skill-group-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: #AFA9EC;
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    background: rgba(83,74,183,0.4);
+    border: 1px solid rgba(150,160,210,0.3);
+    border-radius: 4px;
+    padding: 3px 9px;
+    font-size: 10px;
+    color: #AFA9EC;
+    font-family: 'Press Start 2P', cursive;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .project-card {
+    background: rgba(150,160,210,0.1);
+    border: 1px solid rgba(150,160,210,0.25);
+    border-radius: 12px;
+    padding: 24px 28px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .project-card:hover {
+    background: rgba(150,160,210,0.18);
+    border-color: rgba(150,160,210,0.5);
+  }
+
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  .project-title {
+  font-family: 'Press Start 2P', cursive;
+  
+    font-size: 11px;
+    color: white;
+    line-height: 1.6;
+  }
+
+  .project-link {
+    color: #AFA9EC;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    white-space: nowrap;
+    border: 1px solid rgba(150,160,210,0.4);
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .project-link:hover {
+    background: rgba(83,74,183,0.5);
+    border-color: #AFA9EC;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-size: 10px;
+    background: rgba(83,74,183,0.4);
+    color: #AFA9EC;
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-family: 'Press Start 2P', cursive;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+  }
+
+  /* EXPERIENCE */
+  .exp-card {
+    background: rgba(150,160,210,0.1);
+    border: 1px solid rgba(150,160,210,0.25);
+    border-left: 3px solid #534AB7;
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .exp-role {
+  font-family: 'Press Start 2P', cursive;
+  
+    font-size: 11px;
+    color: white;
+    line-height: 1.6;
+  }
+
+  .exp-date {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: #AFA9EC;
+    white-space: nowrap;
+  }
+
+  .exp-company {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: rgba(150,160,210,0.8);
+    margin-bottom: 16px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exp-bullets li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #534AB7;
+    font-size: 11px;
+  }
+
+  /* TRANSCRIPT */
+  #transcript {
+    background: #16213e;
+    max-width: 100%;
+    padding: 80px 0;
+    border-top: 1px solid rgba(150,160,210,0.15);
+    border-bottom: 1px solid rgba(150,160,210,0.15);
+  }
+
+  #transcript > .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .transcript-box {
+    background: rgba(150,160,210,0.1);
+    border: 1px solid rgba(150,160,210,0.25);
+    border-radius: 12px;
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .transcript-text h3 {
+    font-family: 'Press Start 2P', cursive;
+  
+    font-size: 13px;
+    color: white;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .transcript-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    max-width: 400px;
+    line-height: 1.8;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #16213e;
+    padding: 48px;
+    text-align: center;
+    border-top: 1px solid rgba(150,160,210,0.15);
+  }
+
+  .footer-name {
+  font-family: 'Press Start 2P', cursive;
+  
+    font-size: 14px;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .contact-links a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    transition: color 0.2s;
+  }
+
+  .contact-links a:hover { color: white; }
+
+  .footer-copy {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 7px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 7px; }
+    .hero { padding: 100px 20px 60px; }
+    section { padding: 60px 20px; }
+    #transcript > .inner { padding: 0 20px; }
+    .project-header { flex-direction: column; }
+    .transcript-box { flex-direction: column; }
+    footer { padding: 40px 20px; }
+    .exp-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-name">Portfolio</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Work</a></li>
+    <li><a href="#transcript">Transcript</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Software Engineering Student · APU</p>
+  <h1 class="hero-name">Pang Jun Yin</h1>
+  <p class="hero-summary">
+    Software Engineering student with hands-on experience in full-stack web development, UI/UX, networking, and cybersecurity. Completed a Diploma internship designing digital forms for an internal staff portal used across multiple departments. Currently pursuing a Bachelor's degree and seeking an internship opportunity to apply and grow my technical skills in a professional environment.
+  </p>
+
+</div>
+
+<hr class="section-divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-eyebrow">What I work with</p>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <p class="skill-group-title">Languages</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Web Dev</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Express</span>
+        <span class="skill-tag">Pug</span>
+        <span class="skill-tag">Responsive Design</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Design & Data</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">R Studio</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">AI Concepts</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Infrastructure</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Cisco Packet Tracer</span>
+        <span class="skill-tag">Autopsy</span>
+        <span class="skill-tag">Nessus</span>
+        <span class="skill-tag">VMware</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Tools</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">NetBeans</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Joget</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Soft Skills</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Stakeholder Communication</span>
+        <span class="skill-tag">Requirements Gathering</span>
+        <span class="skill-tag">Team Collaboration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-eyebrow">Things I've built</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3 class="project-title">Real-time Multiplayer Web Game</h3>
+        <a href="https://github.com/yullhan775-byte/soq-website-project" target="_blank" class="project-link">GitHub →</a>
+      </div>
+      <div class="project-stack">
+        <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Pug</span><span class="tag">MySQL</span>
+      </div>
+      <p class="project-desc">A turn-based multiplayer quiz game played across multiple devices with a lobby system, skill mechanics, event squares, and live game state polling. Originally designed with a physical board and QR code components.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3 class="project-title">3D Data Visualisation</h3>
+        <a href="https://github.com/yullhan775-byte/kasatria" target="_blank" class="project-link">GitHub →</a>
+      </div>
+      <div class="project-stack">
+        <span class="tag">JavaScript</span><span class="tag">Three.js</span><span class="tag">HTML</span><span class="tag">CSS</span>
+      </div>
+      <p class="project-desc">An interactive 3D visualisation tool displaying data records across four spatial layouts — table, sphere, helix, and grid — with smooth animated transitions and an interactive camera.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3 class="project-title">Hospital PPE Inventory System</h3>
+        <a href="https://github.com/yullhan775-byte/hospital-inventory-system" target="_blank" class="project-link">GitHub →</a>
+      </div>
+      <div class="project-stack">
+        <span class="tag">Java</span><span class="tag">NetBeans</span><span class="tag">Swing</span>
+      </div>
+      <p class="project-desc">Individual module of a group project. Implemented hospital and supplier management with full CRUD operations, low stock alerts, date-range filtering, and item distribution features.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3 class="project-title">Academic Management System</h3>
+        <a href="https://github.com/yullhan775-byte/academic-management-system" target="_blank" class="project-link">GitHub →</a>
+      </div>
+      <div class="project-stack">
+        <span class="tag">Java</span><span class="tag">NetBeans</span><span class="tag">Swing</span>
+      </div>
+      <p class="project-desc">Individual module of a group project. Implemented the lecturer dashboard with assessment management, student mark entry, and feedback features across a three-role academic system.</p>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-eyebrow">Where I've worked</p>
+  <h2 class="section-title">Experience</h2>
+  <div class="exp-card">
+    <div class="exp-header">
+      <h3 class="exp-role">Employer Engagement Intern (IT)</h3>
+      <span class="exp-date">Oct 2025 – Nov 2025</span>
+    </div>
+    <p class="exp-company">Asia Pacific University of Technology and Innovation</p>
+    <ul class="exp-bullets">
+      <li>Designed digital forms for an internal staff portal used across multiple departments</li>
+      <li>Gathered and documented requirements by consulting stakeholders from Finance and other departments</li>
+      <li>Presented designs in weekly progress meetings to obtain approval and incorporate feedback</li>
+      <li>Collaborated with a partner department, providing assistance when needed</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TRANSCRIPT -->
+<div id="transcript">
+  <div class="inner">
+    <p class="section-eyebrow">Academic record</p>
+    <h2 class="section-title">Transcript</h2>
+    <div class="transcript-box">
+      <div class="transcript-text">
+        <h3>Academic Transcripts</h3>
+        <p>View my official academic transcripts from Asia Pacific University of Technology and Innovation.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="https://drive.google.com/uc?export=download&id=1wGzQrlb0uDS3A3jiTRYA1hFXA1kCKXC7" target="_blank" class="btn btn-primary">Diploma</a>
+        <a href="https://drive.google.com/uc?export=download&id=12W-uv5lfTNncycQCQjKROMC3fFkza4vs" target="_blank" class="btn btn-primary">Degree</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <p class="footer-name">Pang Jun Yin</p>
+  <div class="contact-links">
+    <a href="mailto:jinyin480@gmail.com">jinyin480@gmail.com</a>
+    <a href="tel:+60149791505">+60 14-979-1505</a>
+    <a href="https://github.com/yullhan775-byte" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/pang-jun-yin-225b99352/" target="_blank">LinkedIn</a>
+  </div>
+  <p class="footer-copy">© 2026 Pang Jun Yin</p>
+</footer>
+
+</body>
+</html>
